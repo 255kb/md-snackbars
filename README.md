@@ -7,6 +7,12 @@ See [Google's Material Design specifications](http://www.google.com/design/spec/
 ##Dependencies
 - jQuery
 
+##Installation
+
+You can install MD-Snackbars with Bower:
+
+    bower install md-snackbars
+
 ##How to use
 
 ###1. Init MD-Snackbars
