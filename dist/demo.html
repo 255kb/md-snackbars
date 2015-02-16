@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>MD-Snackbars Demo</title>
+    <link rel="stylesheet" type="text/css" href="md-snackbars.css">
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+</head>
+<body>
+    <h3>Show a snackbar programmatically (with no timeout)</h3>
+    <button class="snackbar-show">Show</button>
+    <button class="snackbar-hide">Hide</button>
+
+    <h3>Show a snackbar through data attributes</h3>
+    <button data-toggle="md-snackbar" data-text="This is a test with data attributes">Try</button>
+
+    <h3>Default left align</h3>
+    <button data-toggle="md-snackbar" data-text="Left Snackbar">Try</button>
+
+    <h3>Right align</h3>
+    <button data-toggle="md-snackbar" data-text="Right Snackbar" data-align="right">Try</button>
+
+    <h3>Full width (overrides following options: alignment and toast style</h3>
+    <button data-toggle="md-snackbar" data-text="Full width Snackbar" data-full-width="true">Try</button>
+
+    <h3>Toast style</h3>
+    <button data-toggle="md-snackbar" data-text="Toast style" data-toast="true">Try</button>
+
+    <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script src="md-snackbars.min.js"></script>
+
+    <script>
+        $(function() {
+            MDSnackbars.init();
+
+            $(document).on('click', '.snackbar-show', function(){
+                MDSnackbars.show({text: 'This is a test', timeout:0});
+            }).on('click', '.snackbar-hide', function(){
+                MDSnackbars.hide();
+            });
+        });
+    </script>
+</body>
+</html>
