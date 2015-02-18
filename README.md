@@ -1,6 +1,6 @@
 #Snackbars and Toasts based on Google's Material Design
 
-MD Snackbars is a lightweight package allowing to show notification to the user based on Google's Material Design.
+MD Snackbars is a lightweight package allowing to show notification to the user based on Google's Material Design. [View a demo](http://255kb.github.io/md-snackbars/)
 
 See [Google's Material Design specifications](http://www.google.com/design/spec/components/snackbars-toasts.html#snackbars-toasts-specs) for more information about Snackbars.
 
@@ -58,7 +58,7 @@ Default options are the following:
 
 Snackbars are not stackable according to Material Design's specifications. A new snackbar will overwrite the snackbar previously triggered.
 
-Snackbars can be dismissed with a click (be sure to init the plugin with `MDSnackbars.init()`).
+Snackbars can be dismissed with a click (be sure to init the plugin with `MDSnackbars.init()`). This behavior can be disabled by using `data-click-close="false"` attribute or the `clickToClose` option.
 
 ###6. TODO
 - Add the possibility to include an action in the snackbar
