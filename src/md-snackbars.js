@@ -44,7 +44,10 @@
                 MDSnackbars.show(options);
             })
             .on('click', '.md-snackbar', function() {
-                MDSnackbars.hide(true);
+                // prevent close on clicks on child elements
+                if($(event.target).hasClass('md-snackbar')){
+                    MDSnackbars.hide(true);
+                }
             });
         },
         show: function (options) {
