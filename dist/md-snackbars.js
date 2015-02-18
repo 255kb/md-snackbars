@@ -21,7 +21,8 @@
         toast: false,
         align: 'left',
         fullWidth: false,
-        timeout: 3000
+        timeout: 3000,
+        html: false
     };
     var snackbar = '';
     var timeout;
@@ -37,7 +38,8 @@
                     toast: $this.data('toast'),
                     align: $this.data('align'),
                     fullWidth: $this.data('full-width'),
-                    timeout: $this.data('timeout')
+                    timeout: $this.data('timeout'),
+                    html: $this.data('html')
                 };
                 MDSnackbars.show(options);
             })
@@ -71,7 +73,13 @@
                 }
             }
 
-            snackbar.text(currentOptions.text).addClass('md-snackbar-shown').appendTo($('body')).fadeIn(300, 'linear');
+            if(currentOptions.html) {
+                snackbar.html(currentOptions.text);
+            } else {
+                snackbar.text(currentOptions.text);
+            }
+
+            snackbar.addClass('md-snackbar-shown').appendTo($('body')).fadeIn(300, 'linear');
 
             if(currentOptions.timeout !== 0) {
                 timeout = setTimeout(function() {
