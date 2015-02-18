@@ -16,7 +16,7 @@
 }(this, function ($) {
     'use strict';
 
-    var default_options = {
+    var defaultOptions = {
         text: '',
         toast: false,
         align: 'left',
@@ -45,7 +45,7 @@
             });
         },
         show: function (options) {
-            options = $.extend({}, default_options, options);
+            options = $.extend({}, defaultOptions, options);
 
             //hide if already exists
             if(snackbar.length > 0) {
