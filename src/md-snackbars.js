@@ -25,6 +25,7 @@
     };
     var snackbar = '';
     var timeout;
+    var currentOptions;
 
     var MDSnackbars = {
         init: function() {
@@ -45,7 +46,7 @@
             });
         },
         show: function (options) {
-            options = $.extend({}, defaultOptions, options);
+            currentOptions = $.extend({}, defaultOptions, options);
 
             //hide if already exists
             if(snackbar.length > 0) {
@@ -55,27 +56,27 @@
             snackbar = $('<div>').addClass('md-snackbar');
 
             //if full width, do not check other options (toast, align, ...)
-            if(options.fullWidth) {
+            if(currentOptions.fullWidth) {
                 snackbar.addClass('md-snackbar-full');
             } else {
                 //rounded corners
-                if(options.toast) {
+                if(currentOptions.toast) {
                     snackbar.addClass('md-toast');
                 }
                 //alignment
-                if(options.align === 'right') {
+                if(currentOptions.align === 'right') {
                     snackbar.addClass('md-snackbar-right');
                 } else {
                     snackbar.addClass('md-snackbar-left');
                 }
             }
 
-            snackbar.text(options.text).addClass('md-snackbar-shown').appendTo($('body')).fadeIn(300, 'linear');
+            snackbar.text(currentOptions.text).addClass('md-snackbar-shown').appendTo($('body')).fadeIn(300, 'linear');
 
-            if(options.timeout !== 0) {
+            if(currentOptions.timeout !== 0) {
                 timeout = setTimeout(function() {
                     MDSnackbars.hide(false);
-                }, options.timeout);
+                }, currentOptions.timeout);
             }
         },
         hide: function() {
