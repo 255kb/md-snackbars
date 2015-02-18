@@ -22,7 +22,8 @@
         align: 'left',
         fullWidth: false,
         timeout: 3000,
-        html: false
+        html: false,
+        clickToClose: true
     };
     var snackbar = '';
     var timeout;
@@ -39,14 +40,18 @@
                     align: $this.data('align'),
                     fullWidth: $this.data('full-width'),
                     timeout: $this.data('timeout'),
-                    html: $this.data('html')
+                    html: $this.data('html'),
+                    clickToClose: $this.data('click-close')
                 };
                 MDSnackbars.show(options);
             })
             .on('click', '.md-snackbar', function() {
                 // prevent close on clicks on child elements
                 if($(event.target).hasClass('md-snackbar')){
-                    MDSnackbars.hide(true);
+                    // only close snackbar if not deactivated
+                    if(currentOptions.clickToClose){
+                        MDSnackbars.hide(true);
+                    }
                 }
             });
         },
@@ -88,6 +93,13 @@
                 timeout = setTimeout(function() {
                     MDSnackbars.hide(false);
                 }, currentOptions.timeout);
+            }
+        },
+        changeText: function(newText) {
+            if(currentOptions.html) {
+                snackbar.html(newText);
+            } else {
+                snackbar.text(newText);
             }
         },
         hide: function() {
