@@ -5,7 +5,7 @@
     "Guillaume <hi@guillaumemonnet.com>"
   ],
   "description": "Snackbars and Toasts based on Google's Material Design",
-  "main": "build/md-snackbars.js",
+  "main": ["dist/md-snackbars.min.js", "dist/md-snackbars.css"],
   "moduleType": [
     "amd",
     "globals",
