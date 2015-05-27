@@ -1,13 +1,13 @@
-#Snackbars and Toasts based on Google's Material Design
+# Snackbars and Toasts based on Google's Material Design
 
 MD Snackbars is a lightweight package allowing to show notification to the user based on Google's Material Design. [View a demo](http://255kb.github.io/md-snackbars/)
 
 See [Google's Material Design specifications](http://www.google.com/design/spec/components/snackbars-toasts.html#snackbars-toasts-specs) for more information about Snackbars.
 
-##Dependencies
+## Dependencies
 - jQuery
 
-##Installation
+## Installation
 
 You can install MD-Snackbars with Bower:
 
@@ -17,23 +17,23 @@ or with Meteor:
 
     meteor add md-snackbars
 
-##How to use
+## How to use
 
-###1. Init MD-Snackbars
+### 1. Init MD-Snackbars
 
     MDSnackbars.init();
 
 Not needed in order to use `MDSnackbars.show()` and `MDSnackbars.hide()` but needed in order to be able to hide the snackbar on click and show a snackbar using data attributes.
-####For Meteor, be sure to use `MDSnackbars.init();` in your templates `onRendered` callbacks.
+#### For Meteor, be sure to use `MDSnackbars.init();` in your templates `onRendered` callbacks.
 
-###2. Show/hide a snackbar programmatically
+### 2. Show/hide a snackbar programmatically
 
     MDSnackbars.show(options);
     MDSnackbars.hide();
 
 See below for more information about `options`.
 
-###3. Show a snackbar using data attributes
+### 3. Show a snackbar using data attributes
 
 In order to show a snackbar using data attributes you can use `data-toggle="md-snackbar"` and the following options:
 
@@ -45,7 +45,7 @@ In order to show a snackbar using data attributes you can use `data-toggle="md-s
     data-html="false"
     data-click-close="true">Show</button>
 
-###4. Default options
+### 4. Default options
 
 Default options are the following:
 
@@ -59,7 +59,7 @@ Default options are the following:
     };
     MDSnackbars.show(options);
 
-###5. Behavior
+### 5. Behavior
 
 Snackbars are not stackable according to Material Design's specifications. A new snackbar will overwrite the snackbar previously triggered.
 
