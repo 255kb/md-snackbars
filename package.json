@@ -1,6 +1,6 @@
 {
   "name": "md-snackbars",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Snackbars and Toasts based on Google's Material Design",
   "author": "Guillaume <hi@guillaumemonnet.com>",
   "repository": {

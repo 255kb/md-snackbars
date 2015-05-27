@@ -75,3 +75,6 @@ Snackbars can be dismissed with a click (be sure to init the plugin with `MDSnac
 #### v1.2.3:
 - Added the Meteor package
 - docs update
+
+#### v1.2.4:
+- Correct bug that prevented Meteor package to work

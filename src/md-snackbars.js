@@ -1,12 +1,8 @@
 /* Material Design snackbars and toasts (https://github.com/255kb/md-snackbars | MIT license) */
 
 (function (root, factory) {
-    // Meteor
-    if (typeof Package !== 'undefined') {
-        var MDSnackbars = factory($);
-    }
     //AMD
-    else if (typeof define === 'function' && define.amd) {
+    if (typeof define === 'function' && define.amd) {
         define(['jquery'], function($) {
             return factory($);
         });
@@ -118,3 +114,8 @@
     };
     return MDSnackbars;
 }));
+
+if (typeof Package !== 'undefined') {
+    MDSnackbars = this.MDSnackbars;
+    delete this.MDSnackbars;
+}

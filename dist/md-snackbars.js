@@ -1,16 +1,18 @@
 /* Material Design snackbars and toasts (https://github.com/255kb/md-snackbars | MIT license) */
 
 (function (root, factory) {
+    //AMD
     if (typeof define === 'function' && define.amd) {
-        //AMD
         define(['jquery'], function($) {
             return factory($);
         });
-    } else if (typeof module !== 'undefined' && module.exports) {
-        //Node.js or CommonJS
+    }
+    //Node.js or CommonJS
+    else if (typeof module !== 'undefined' && module.exports) {
         module.exports = factory(require('jquery'));
-    } else {
-        //Global
+    }
+    //root
+    else {
         root.MDSnackbars = factory(root.jQuery ||root.$);
     }
 }(this, function ($) {
@@ -112,3 +114,8 @@
     };
     return MDSnackbars;
 }));
+
+if (typeof Package !== 'undefined') {
+    MDSnackbars = this.MDSnackbars;
+    delete this.MDSnackbars;
+}
