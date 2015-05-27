@@ -13,6 +13,10 @@ You can install MD-Snackbars with Bower:
 
     bower install md-snackbars
 
+or with Meteor:
+
+    meteor add md-snackbars
+
 ##How to use
 
 ###1. Init MD-Snackbars
@@ -20,6 +24,7 @@ You can install MD-Snackbars with Bower:
     MDSnackbars.init();
 
 Not needed in order to use `MDSnackbars.show()` and `MDSnackbars.hide()` but needed in order to be able to hide the snackbar on click and show a snackbar using data attributes.
+####For Meteor, be sure to use `MDSnackbars.init();` in your templates `onRendered` callbacks.
 
 ###2. Show/hide a snackbar programmatically
 
@@ -60,5 +65,13 @@ Snackbars are not stackable according to Material Design's specifications. A new
 
 Snackbars can be dismissed with a click (be sure to init the plugin with `MDSnackbars.init()`). This behavior can be disabled by using `data-click-close="false"` attribute or the `clickToClose` option.
 
-###6. TODO
+### TODO
 - Add the possibility to include an action in the snackbar
+- Bottom position customization
+
+
+### Changelog
+
+#### v1.2.3:
+- Added the Meteor package
+- docs update
