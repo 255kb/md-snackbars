@@ -49,17 +49,6 @@
             }).on('click', '.snackbar-hide', function(){
                 MDSnackbars.hide();
             });
-            var options = {
-                toast: false,       // change snackbar's style (true = rounded corners)
-                align: 'left',      // align 'left' or 'right'
-                fullWidth: true,   // snackbar takes all screen width (overrides align and toast style, also remove default 2px rounded corners)
-                timeout: 3000,      // delay before the snackbar disappears (if 0, the snackbar is permanent unless another snackbar is triggered or MDSnackbars.hide() is called)
-                html: false ,       // allows HTML insertion
-                bottom: 100,
-                clickToClose: true  // enable/disable click to close behavior
-            };
-            MDSnackbars.show(options);
-
         });
     </script>
 </body>
