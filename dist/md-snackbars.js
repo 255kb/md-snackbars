@@ -23,6 +23,7 @@
         toast: false,
         align: 'left',
         fullWidth: false,
+        bottom: null,
         timeout: 3000,
         html: false,
         clickToClose: true
@@ -34,20 +35,21 @@
     var MDSnackbars = {
         init: function() {
             //initialize listener for data attributes and hide on click
-            $(document).on('click', '[data-toggle=md-snackbar]', function() {
+            $(document).on('click', '[data-toggle=md-snackbar]', function(event) {
                 var $this = $(this);
                 var options = {
                     text: $this.data('text'),
                     toast: $this.data('toast'),
                     align: $this.data('align'),
                     fullWidth: $this.data('full-width'),
+                    bottom: $this.data('bottom'),
                     timeout: $this.data('timeout'),
                     html: $this.data('html'),
                     clickToClose: $this.data('click-close')
                 };
                 MDSnackbars.show(options);
             })
-            .on('click', '.md-snackbar', function() {
+            .on('click', '.md-snackbar', function(event) {
                 // prevent close on clicks on child elements
                 if($(event.target).hasClass('md-snackbar')){
                     // only close snackbar if not deactivated
@@ -83,6 +85,11 @@
                 }
             }
 
+            //set bottom positioning
+            if(currentOptions.bottom) {
+                snackbar.css({bottom: currentOptions.bottom});
+            }
+
             if(currentOptions.html) {
                 snackbar.html(currentOptions.text);
             } else {
@@ -115,6 +122,7 @@
     return MDSnackbars;
 }));
 
+//export for Meteor
 if (typeof Package !== 'undefined') {
     MDSnackbars = this.MDSnackbars;
     delete this.MDSnackbars;

@@ -10,7 +10,7 @@
   bottom: 20px;
   padding: 15px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  z-index: 100;
+  z-index: 9999;
 }
 .md-snackbar.md-snackbar-shown {
   height: auto;

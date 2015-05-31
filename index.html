@@ -25,14 +25,17 @@
     <h3>Right align</h3>
     <button data-toggle="md-snackbar" data-text="Right Snackbar" data-align="right">Try</button>
 
-    <h3>Full width (overrides following options: alignment and toast style</h3>
+    <h3>Full width (overrides following options: alignment and toast style)</h3>
     <button data-toggle="md-snackbar" data-text="Full width Snackbar" data-full-width="true">Try</button>
 
-    <h3>Toast style</h3>
+    <h3>Toast style (rounded corners)</h3>
     <button data-toggle="md-snackbar" data-text="Toast style" data-toast="true">Try</button>
 
     <h3>With HTML</h3>
     <button data-toggle="md-snackbar" data-text="A snackbar with <a href='#'>HTML</a>" data-html="true">Try</button>
+
+    <h3>Bottom positioning (100px)</h3>
+    <button data-toggle="md-snackbar" data-text="50px from the bottom" data-html="true" data-bottom="100" data-full-width="true">Try</button>
 
     <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
     <script src="dist/md-snackbars.min.js"></script>
@@ -46,6 +49,17 @@
             }).on('click', '.snackbar-hide', function(){
                 MDSnackbars.hide();
             });
+            var options = {
+                toast: false,       // change snackbar's style (true = rounded corners)
+                align: 'left',      // align 'left' or 'right'
+                fullWidth: true,   // snackbar takes all screen width (overrides align and toast style, also remove default 2px rounded corners)
+                timeout: 3000,      // delay before the snackbar disappears (if 0, the snackbar is permanent unless another snackbar is triggered or MDSnackbars.hide() is called)
+                html: false ,       // allows HTML insertion
+                bottom: 100,
+                clickToClose: true  // enable/disable click to close behavior
+            };
+            MDSnackbars.show(options);
+
         });
     </script>
 </body>

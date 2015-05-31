@@ -1,31 +1,33 @@
 .md-snackbar{
-  font-family: 'Roboto', sans-serif;
-  font-size: 14px;
-  border-radius: 2px;
-  background-color: #323232;
-  color: #fff;
-  min-width: 20%;
-  position: fixed;
-  display: none;
-  bottom: 20px;
-  padding: 15px;
-  box-shadow: 0 1px 3px rgba(0,0,0, .12), 0 1px 2px rgba(0,0,0, .24) ;
-  z-index: 100;
-  &.md-snackbar-shown{
-    height: auto;
-  }&.md-toast{
-    border-radius: 50px;
-  }
-  &.md-snackbar-left{
-    left: 20px;
-  }
-  &.md-snackbar-right{
-    right: 20px;
-  }
-  &.md-snackbar-full{
-    width: 100%;
-    bottom: 0;
-    left: 0;
-    border-radius: 0;
-  }
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    border-radius: 2px;
+    background-color: #323232;
+    color: #fff;
+    min-width: 20%;
+    position: fixed;
+    display: none;
+    bottom: 20px;
+    padding: 15px;
+    box-shadow: 0 1px 3px rgba(0,0,0, .12), 0 1px 2px rgba(0,0,0, .24) ;
+    z-index: 9999;
+
+    &.md-snackbar-shown{
+        height: auto;
+    }
+    &.md-toast{
+        border-radius: 50px;
+    }
+    &.md-snackbar-left{
+        left: 20px;
+    }
+    &.md-snackbar-right{
+        right: 20px;
+    }
+    &.md-snackbar-full{
+        width: 100%;
+        bottom: 0;
+        left: 0;
+        border-radius: 0;
+    }
 }

@@ -38,18 +38,20 @@ See below for more information about `options`.
 In order to show a snackbar using data attributes you can use `data-toggle="md-snackbar"` and the following options:
 
     <button data-toggle="md-snackbar"
-    data-toast="false"
-    data-align="left"
-    data-full-width="false"
-    data-timeout="3000"
-    data-html="false"
-    data-click-close="true">Show</button>
+    data-text = "message"
+    data-toast = "false"
+    data-align = "left"
+    data-full-width = "false"
+    data-timeout = "3000"
+    data-html = "false"
+    data-click-close = "true">Show</button>
 
 ### 4. Default options
 
 Default options are the following:
 
     var options = {
+        text: 'message',    // change snackbar's text/html
         toast: false,       // change snackbar's style (true = rounded corners)
         align: 'left',      // align 'left' or 'right'
         fullWidth: false,   // snackbar takes all screen width (overrides align and toast style, also remove default 2px rounded corners)
@@ -65,11 +67,6 @@ Snackbars are not stackable according to Material Design's specifications. A new
 
 Snackbars can be dismissed with a click (be sure to init the plugin with `MDSnackbars.init()`). This behavior can be disabled by using `data-click-close="false"` attribute or the `clickToClose` option.
 
-### TODO
-- Add the possibility to include an action in the snackbar
-- Bottom position customization
-
-
 ### Changelog
 
 #### v1.2.3:
@@ -78,3 +75,10 @@ Snackbars can be dismissed with a click (be sure to init the plugin with `MDSnac
 
 #### v1.2.4:
 - Correct bug that prevented Meteor package to work
+
+#### v1.2.5:
+- Added option "bottom" to set bottom positioning (default is still 20px, or 0 for full width snackbars)
+- updates to the docs
+
+### TODO
+- Add the possibility to include an action in the snackbar
