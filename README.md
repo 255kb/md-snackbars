@@ -42,6 +42,7 @@ In order to show a snackbar using data attributes you can use `data-toggle="md-s
     data-toast = "false"
     data-align = "left"
     data-full-width = "false"
+    data-bottom = 100
     data-timeout = "3000"
     data-html = "false"
     data-click-close = "true">Show</button>
@@ -55,6 +56,7 @@ Default options are the following:
         toast: false,       // change snackbar's style (true = rounded corners)
         align: 'left',      // align 'left' or 'right'
         fullWidth: false,   // snackbar takes all screen width (overrides align and toast style, also remove default 2px rounded corners)
+        bottom: 100,        // position from bottom (default to 20px or 0 if `fullWidth`)
         timeout: 3000,      // delay before the snackbar disappears (if 0, the snackbar is permanent unless another snackbar is triggered or MDSnackbars.hide() is called)
         html: false ,       // allows HTML insertion
         clickToClose: true  // enable/disable click to close behavior
