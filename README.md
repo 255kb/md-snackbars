@@ -15,7 +15,7 @@ You can install MD-Snackbars with Bower:
 
 or with Meteor:
 
-    meteor add md-snackbars
+    meteor add 255kb:md-snackbars
 
 ## How to use
 
@@ -37,15 +37,15 @@ See below for more information about `options`.
 
 In order to show a snackbar using data attributes you can use `data-toggle="md-snackbar"` and the following options:
 
-    <button data-toggle="md-snackbar"
-    data-text = "message"
-    data-toast = "false"
-    data-align = "left"
-    data-full-width = "false"
-    data-bottom = 100
-    data-timeout = "3000"
-    data-html = "false"
-    data-click-close = "true">Show</button>
+    <button data-toggle = "md-snackbar"
+            data-text = "message"
+            data-toast = "false"
+            data-align = "left"
+            data-full-width = "false"
+            data-bottom = 100
+            data-timeout = "3000"
+            data-html = "false"
+            data-click-close = "true">Show</button>
 
 ### 4. Default options
 
@@ -71,16 +71,16 @@ Snackbars can be dismissed with a click (be sure to init the plugin with `MDSnac
 
 ### Changelog
 
-#### v1.2.3:
-- Added the Meteor package
-- docs update
+#### v1.2.5:
+- Added option "bottom" to set bottom positioning (default is still 20px, or 0 for full width snackbars)
+- updates to the docs
 
 #### v1.2.4:
 - Correct bug that prevented Meteor package to work
 
-#### v1.2.5:
-- Added option "bottom" to set bottom positioning (default is still 20px, or 0 for full width snackbars)
-- updates to the docs
+#### v1.2.3:
+- Added the Meteor package
+- docs update
 
 ### TODO
 - Add the possibility to include an action in the snackbar
