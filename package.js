@@ -1,6 +1,6 @@
 Package.describe({
     name: '255kb:md-snackbars',
-    version: '1.2.5',
+    version: '1.3.0',
     summary: 'Snackbars and Toasts based on Google\'s Material Design',
     git: 'https://github.com/255kb/md-snackbars',
     documentation: 'README.md'

@@ -19,18 +19,113 @@
     'use strict';
 
     var defaultOptions = {
-        text: '',
-        toast: false,
-        align: 'left',
-        fullWidth: false,
-        bottom: null,
-        timeout: 3000,
-        html: false,
-        clickToClose: true
+            text: '',
+            toast: false,
+            align: 'left',
+            fullWidth: false,
+            bottom: null,
+            timeout: 3000,
+            html: false,
+            clickToClose: true,
+            animation: 'fade'
+        },
+        animationTypes = ['fade', 'slideup'],
+        snackbarsQueue = [],
+        currentSnackbar = null,
+        addSnackbarToQueue, showSnackbar, hideSnackbar, processQueue, buildSnackbar;
+
+
+    addSnackbarToQueue = function (snackbar) {
+        snackbarsQueue.push(snackbar);
     };
-    var snackbar = '';
-    var timeout;
-    var currentOptions;
+
+    showSnackbar = function () {
+        if(currentSnackbar) {
+            currentSnackbar.element.appendTo($('body'));
+
+            if (currentSnackbar.options.timeout !== 0) {
+                currentSnackbar.timeout = setTimeout(function () {
+                    hideSnackbar();
+                }, currentSnackbar.options.timeout);
+            }
+        }
+    };
+
+    hideSnackbar = function () {
+        //clear timeout in case we hide before delay (click, MDSnackbar.hide())
+        clearTimeout(currentSnackbar.timeout);
+
+        $('.md-snackbar__inner' ,currentSnackbar.element).removeClass('md-snackbar__inner--animated-' + currentSnackbar.options.animation + '-in').addClass('md-snackbar__inner--animated-' + currentSnackbar.options.animation + '-out');
+
+        setTimeout(function () {
+            currentSnackbar.element.remove();
+            currentSnackbar = null;
+            processQueue();
+        }, 400);
+    };
+
+    processQueue = function () {
+        if(!currentSnackbar) {
+            var newSnackbar = snackbarsQueue.shift();
+            if(!newSnackbar) {
+                return;
+            }
+            currentSnackbar = newSnackbar;
+            showSnackbar();
+        }
+    };
+
+    buildSnackbar = function (options) {
+        //create new snackbar element
+        var snackbar = {
+            element: $('<div>').addClass('md-snackbar'),
+            options: $.extend({}, defaultOptions, options)
+        };
+
+        var innerElement = $('<div>').addClass('md-snackbar__inner');
+
+        //if full width, do not check other options (toast, align, ...)
+        if(snackbar.options.fullWidth) {
+            snackbar.element.addClass('md-snackbar--full');
+        } else {
+            //rounded corners
+            if(snackbar.options.toast) {
+                innerElement.addClass('md-snackbar__inner--toast');
+            } else {
+                innerElement.addClass('md-snackbar__inner--rounded');
+            }
+
+            //alignment
+            if(snackbar.options.align === 'right') {
+                snackbar.element.addClass('md-snackbar--right');
+            } else {
+                snackbar.element.addClass('md-snackbar--left');
+            }
+        }
+
+        //set bottom positioning
+        if(snackbar.options.bottom) {
+            snackbar.element.css({bottom: snackbar.options.bottom});
+        }
+
+        //inject html or text
+        if(snackbar.options.html) {
+            innerElement.html(snackbar.options.text);
+        } else {
+            innerElement.text(snackbar.options.text);
+        }
+
+        //check animation type
+        if(animationTypes.indexOf(snackbar.options.animation) < 0) {
+            snackbar.options.animation = 'fade';
+        }
+
+        innerElement.addClass('md-snackbar__inner--animated ' + 'md-snackbar__inner--animated-' + snackbar.options.animation + '-in');
+
+        snackbar.element.append(innerElement);
+
+        return snackbar;
+    };
 
     var MDSnackbars = {
         init: function() {
@@ -45,78 +140,28 @@
                     bottom: $this.data('bottom'),
                     timeout: $this.data('timeout'),
                     html: $this.data('html'),
-                    clickToClose: $this.data('click-close')
+                    clickToClose: $this.data('click-close'),
+                    animation: $this.data('animation')
                 };
                 MDSnackbars.show(options);
             })
             .on('click', '.md-snackbar', function(event) {
                 // prevent close on clicks on child elements
-                if($(event.target).hasClass('md-snackbar')){
+                if($(event.target).hasClass('md-snackbar__inner')){
                     // only close snackbar if not deactivated
-                    if(currentOptions.clickToClose){
-                        MDSnackbars.hide(true);
+                    if(currentSnackbar.options.clickToClose){
+                        hideSnackbar();
                     }
                 }
             });
         },
         show: function (options) {
-            currentOptions = $.extend({}, defaultOptions, options);
-
-            //hide if already exists
-            if(snackbar.length > 0) {
-                MDSnackbars.hide(true);
-            }
-
-            snackbar = $('<div>').addClass('md-snackbar');
-
-            //if full width, do not check other options (toast, align, ...)
-            if(currentOptions.fullWidth) {
-                snackbar.addClass('md-snackbar-full');
-            } else {
-                //rounded corners
-                if(currentOptions.toast) {
-                    snackbar.addClass('md-toast');
-                }
-                //alignment
-                if(currentOptions.align === 'right') {
-                    snackbar.addClass('md-snackbar-right');
-                } else {
-                    snackbar.addClass('md-snackbar-left');
-                }
-            }
-
-            //set bottom positioning
-            if(currentOptions.bottom) {
-                snackbar.css({bottom: currentOptions.bottom});
-            }
-
-            if(currentOptions.html) {
-                snackbar.html(currentOptions.text);
-            } else {
-                snackbar.text(currentOptions.text);
-            }
-
-            snackbar.addClass('md-snackbar-shown').appendTo($('body')).fadeIn(300, 'linear');
-
-            if(currentOptions.timeout !== 0) {
-                timeout = setTimeout(function() {
-                    MDSnackbars.hide(false);
-                }, currentOptions.timeout);
-            }
-        },
-        changeText: function(newText) {
-            if(currentOptions.html) {
-                snackbar.html(newText);
-            } else {
-                snackbar.text(newText);
-            }
+            var newSnackbar = buildSnackbar(options);
+            addSnackbarToQueue(newSnackbar);
+            processQueue();
         },
         hide: function() {
-            snackbar.fadeOut(300, 'linear', function(){
-                this.remove();
-            });
-            //remove timeout in case we overwrite current snackbar with a new one
-            clearTimeout(timeout);
+            hideSnackbar();
         }
     };
     return MDSnackbars;

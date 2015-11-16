@@ -45,31 +45,43 @@ In order to show a snackbar using data attributes you can use `data-toggle="md-s
             data-bottom = 100
             data-timeout = "3000"
             data-html = "false"
-            data-click-close = "true">Show</button>
+            data-click-close = "true"
+            data-animation = "slideup">Show</button>
+            
+    MDSnackbars.init();
 
 ### 4. Default options
 
 Default options are the following:
 
     var options = {
-        text: 'message',    // change snackbar's text/html
-        toast: false,       // change snackbar's style (true = rounded corners)
-        align: 'left',      // align 'left' or 'right'
-        fullWidth: false,   // snackbar takes all screen width (overrides align and toast style, also remove default 2px rounded corners)
-        bottom: 100,        // position from bottom (default to 20px or 0 if `fullWidth`)
-        timeout: 3000,      // delay before the snackbar disappears (if 0, the snackbar is permanent unless another snackbar is triggered or MDSnackbars.hide() is called)
-        html: false ,       // allows HTML insertion
-        clickToClose: true  // enable/disable click to close behavior
+        text: 'message',        // change snackbar's text/html
+        toast: false,           // change snackbar's style (true = rounded corners)
+        align: 'left',          // align 'left' or 'right'
+        fullWidth: false,       // snackbar takes all screen width (overrides align and toast style, also remove default 2px rounded corners)
+        bottom: 100,            // position from bottom (default to 20px or 0 if fullWidth is true)
+        timeout: 3000,          // delay before the snackbar disappears (if 0, the snackbar is permanently showed until MDSnackbars.hide() is called or the snackbar clicked)
+        html: false ,           // allows HTML insertion
+        clickToClose: true,     // enable/disable the click to close behavior
+        animation: 'fade'       // change the animation type ('fade' or 'slideup', default to 'fade')
     };
+    
     MDSnackbars.show(options);
 
 ### 5. Behavior
 
-Snackbars are not stackable according to Material Design's specifications. A new snackbar will overwrite the snackbar previously triggered.
+Snackbars are not stackable according to Material Design's specifications. When a snackbar is showed, all subsequent snackbars will be queued and showed as soon as the previous one has disappeared.
+When you queue a snackbar without a timeout it will be showed permanently until dismissed with a click or `MDSnackbars.hide()`, the processing of the queue will resume as soon as this snackbar is hidden.
 
 Snackbars can be dismissed with a click (be sure to init the plugin with `MDSnackbars.init()`). This behavior can be disabled by using `data-click-close="false"` attribute or the `clickToClose` option.
 
+
 ### Changelog
+
+#### v1.3.0:
+- snackbars are now automatically queued
+- switched to CSS transitions
+- added slide up transition
 
 #### v1.2.5:
 - Added option "bottom" to set bottom positioning (default is still 20px, or 0 for full width snackbars)
@@ -81,6 +93,3 @@ Snackbars can be dismissed with a click (be sure to init the plugin with `MDSnac
 #### v1.2.3:
 - Added the Meteor package
 - docs update
-
-### TODO
-- Add the possibility to include an action in the snackbar

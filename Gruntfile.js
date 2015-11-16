@@ -11,13 +11,6 @@ module.exports = function(grunt) {
                 dest: 'dist/<%= pkg.name %>.min.js'
             }
         },
-        less: {
-            production: {
-                files: {
-                    'dist/<%= pkg.name %>.css': 'src/<%= pkg.name %>.less'
-                }
-            }
-        },
         cssmin: {
             target: {
                 files: [{
@@ -37,17 +30,24 @@ module.exports = function(grunt) {
         copy: {
             main: {
                 files: [
-                    {expand: false, src: ['src/<%= pkg.name %>.js'], dest: 'dist/<%= pkg.name %>.js', filter: 'isFile'}
+                    {
+                        expand: false,
+                        src: ['src/<%= pkg.name %>.js'],
+                        dest: 'dist/<%= pkg.name %>.js',
+                        filter: 'isFile'
+                    },
+                    {
+                        expand: false,
+                        src: ['src/<%= pkg.name %>.css'],
+                        dest: 'dist/<%= pkg.name %>.css',
+                        filter: 'isFile'
+                    }
                 ]
             }
         },
         watch: {
             options: {
                 livereload: true
-            },
-            less: {
-                files: ['src/<%= pkg.name %>.less'],
-                tasks: ['less']
             },
             cssmin: {
                 files: ['dist/<%= pkg.name %>.css'],
@@ -61,11 +61,10 @@ module.exports = function(grunt) {
     });
 
     grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-watch');
 
-    grunt.registerTask('default', ['jshint', 'copy', 'uglify', 'less', 'cssmin', 'watch']);
+    grunt.registerTask('default', ['jshint', 'copy', 'uglify', 'cssmin', 'watch']);
 };
