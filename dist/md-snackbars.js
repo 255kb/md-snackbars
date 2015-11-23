@@ -52,6 +52,10 @@
     };
 
     hideSnackbar = function () {
+        if (!currentSnackbar) {
+            return;
+        }
+
         //clear timeout in case we hide before delay (click, MDSnackbar.hide())
         clearTimeout(currentSnackbar.timeout);
 

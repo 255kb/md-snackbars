@@ -78,6 +78,9 @@ Snackbars can be dismissed with a click (be sure to init the plugin with `MDSnac
 
 ### Changelog
 
+#### v1.3.1:
+- bug fix
+
 #### v1.3.0:
 - snackbars are now automatically queued
 - switched to CSS transitions
