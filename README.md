@@ -1,3 +1,5 @@
+## /!\ This package is not maintained anymore /!\
+
 # Snackbars and Toasts based on Google's Material Design
 
 MD Snackbars is a lightweight package allowing to show notification to the user based on Google's Material Design. [View a demo](http://255kb.github.io/md-snackbars/)
